@@ -1,0 +1,150 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-12">
+      <form
+        #postForm="ngForm"
+        (ngSubmit)="onCreateUser(postForm.value)"
+        id="postForm"
+      >
+        <div id="user-data">
+          <div class="mb-3">
+            <label for="name" class="form-label">Nome</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              ngModel
+              name="name"
+              required
+              #name="ngModel"
+            />
+
+            <div
+              id="nameHelp"
+              *ngIf="!name.valid && name.touched"
+              class="form-text"
+            >
+              O nome é obrigatório.
+            </div>
+
+            <div
+              id="nameErrors"
+              *ngFor="let error of errors.name"
+              class="form-text"
+            >
+              {{ error.message }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="email" class="form-label">Email</label>
+            <input
+              type="text"
+              id="email"
+              class="form-control"
+              ngModel
+              name="email"
+              required
+              email
+              #email="ngModel"
+            />
+
+            <div
+              id="emailHelp"
+              *ngIf="!email.valid && email.touched"
+              class="form-text"
+            >
+              O email é obrigatório.
+            </div>
+
+            <div
+              id="emailErrors"
+              *ngFor="let error of errors.email"
+              class="form-text"
+            >
+              {{ error.message }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="password" class="form-label">Senha</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              ngModel
+              name="password"
+              required
+              #password="ngModel"
+            />
+
+            <div
+              id="passwordHelp"
+              *ngIf="!password.valid && password.touched"
+              class="form-text"
+            >
+              A senha é obrigatória.
+            </div>
+
+            <div
+              id="passwordErrors"
+              *ngFor="let error of errors.password"
+              class="form-text"
+            >
+              {{ error.message }}
+            </div>
+          </div>
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label"
+              >Confirmação de senha</label
+            >
+            <input
+              type="password"
+              id="confirmPassword"
+              class="form-control"
+              ngModel
+              name="confirmPassword"
+              required
+              #confirmPassword="ngModel"
+            />
+
+            <div
+              id="confirmPassword"
+              *ngIf="!confirmPassword.valid && confirmPassword.touched"
+              class="form-text"
+            >
+              A confirmação de senha é obrigatória.
+            </div>
+
+            <div
+              id="confirmPasswordHelp"
+              *ngIf="
+                confirmPassword.value !== password.value &&
+                confirmPassword.touched
+              "
+              class="form-text"
+            >
+              As senhas devem coincidir.
+            </div>
+
+            <div
+              id="confirmPasswordErrors"
+              *ngFor="let error of errors.confirmPassword"
+              class="form-text"
+            >
+              {{ error.message }}
+            </div>
+          </div>
+        </div>
+        <button
+          class="btn btn-primary"
+          type="submit"
+          [disabled]="!postForm.valid"
+        >
+          Salvar
+        </button>
+      </form>
+      <div *ngIf="success" class="alert alert-success mt-3" role="alert">
+        Dados salvos com sucesso.
+      </div>
+    </div>
+  </div>
+</div>
