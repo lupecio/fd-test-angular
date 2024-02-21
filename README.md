@@ -10,6 +10,10 @@ Clone the repository
 
     git clone git@github.com:lupecio/fd-test-angular.git
 
+Install angular
+
+    npm install -g @angular/cli
+
 Switch to the repo folder
 
     cd fd-test-angular
